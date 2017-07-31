@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 
@@ -17,6 +18,7 @@ import java.util.List;
  * Created by Александр Горшов on 28.07.2017  12:07.
  */
 @Repository
+@Primary
 public class BaseDao<T> implements BaseDaoInterface<T> {
 
     private static Logger log = Logger.getLogger(BaseDao.class);
