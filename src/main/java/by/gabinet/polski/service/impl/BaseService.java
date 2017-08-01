@@ -2,6 +2,7 @@ package by.gabinet.polski.service.impl;
 
 import by.gabinet.polski.dao.BaseDaoInterface;
 import by.gabinet.polski.service.BaseServiceInterface;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,27 +17,34 @@ import java.util.List;
 @Service
 @Transactional
 public class BaseService<T> implements BaseServiceInterface<T> {
+    private static Logger log = Logger.getLogger(BaseService.class);
 
     @Autowired
+    @Qualifier("baseDao")
     protected BaseDaoInterface<T> daoInterface;
 
     @Autowired
-    public BaseService() {
+    public BaseService(BaseDaoInterface<T> baseDaoInterface) {
+        this.daoInterface = daoInterface;
     }
 
     public void saveOrUpdate(T entity) {
-
+        log.info("start saveOrUpdate method " + entity);
+        daoInterface.saveOrUpdate(entity);
     }
 
     public T getById(Class clazz, Serializable id) {
-        return null;
+        log.info("start getById method " + clazz + " with id " + id);
+        return (T) daoInterface.getById(clazz, id);
     }
 
     public List<T> getAll(Class clazz) {
-        return null;
+        log.info("start getAll method " + clazz);
+        List<T> list = daoInterface.getAll(clazz);
+        return list;
     }
 
     public void deleteById(Class clazz, Serializable id) {
-
+        log.info("start getById method " + clazz + " with id " + id);
     }
 }

@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 
+import javax.persistence.EntityManager;
+import javax.persistence.OneToOne;
+import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.util.List;
 
@@ -22,8 +25,8 @@ import java.util.List;
 public class BaseDao<T> implements BaseDaoInterface<T> {
 
     private static Logger log = Logger.getLogger(BaseDao.class);
-
     private SessionFactory sessionFactory;
+
 
     @Autowired
     public BaseDao(SessionFactory sessionFactory) {
@@ -34,16 +37,19 @@ public class BaseDao<T> implements BaseDaoInterface<T> {
         return sessionFactory.getCurrentSession();
     }
 
+    @Override
     public void saveOrUpdate(T entity) {
         log.info("start saveOrUpdate " + entity);
         getSession().saveOrUpdate(entity);
     }
 
+    @Override
     public T getById(Class clazz, Serializable id) {
         log.info("start getById  method " + clazz + " with id " + id);
         return (T) getSession().get(clazz, id);
     }
 
+    @Override
     public List<T> getAll(Class clazz) {
         log.info("start method getAll " + clazz);
         Criteria criteria = getSession().createCriteria(clazz);
@@ -51,6 +57,7 @@ public class BaseDao<T> implements BaseDaoInterface<T> {
         return result;
     }
 
+    @Override
     public void deleteById(Class clazz, Serializable id) {
         log.info("start method deleteById with id = " + id);
         String deleteByIdQuery = " delete from " + clazz.getClass() + " where " + clazz.getClass() + ".id=:id";
