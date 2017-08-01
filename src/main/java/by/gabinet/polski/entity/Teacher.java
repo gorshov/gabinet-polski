@@ -1,8 +1,8 @@
 package by.gabinet.polski.entity;
 
-import by.gabinet.polski.entity.enumiration.Role;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.CascadeType;
 
@@ -10,13 +10,12 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Александр Горшов on 25.07.2017  16:51.
  */
+@ToString(exclude = "groupList")
 @Table(name = "TEACHER")
 @Entity
 @Data
@@ -49,16 +48,13 @@ public class Teacher {
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
     private List<Group> groupList = new ArrayList<Group>();
 
-    @Column(name = "ROLE")
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roleList = new HashSet<Role>();
 
     public Teacher() {
 
     }
 
     @Builder
-    public Teacher(String firstName, String lastName, String email, String password, String confirmPassword, String language, List<Group> groupList, Set<Role> roleList) {
+    public Teacher(String firstName, String lastName, String email, String password, String confirmPassword, String language, List<Group> groupList) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -66,7 +62,6 @@ public class Teacher {
         this.confirmPassword = confirmPassword;
         this.language = language;
         this.groupList = groupList;
-        this.roleList = roleList;
     }
 
     @Override

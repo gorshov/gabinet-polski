@@ -9,6 +9,6 @@
 
     <context:component-scan base-package="by.gabinet.polski"/>
 
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>-->
     <import resource="classpath*:beans.xml"/>
 </beans>

@@ -41,4 +41,6 @@ public class Company {
         this.companyEmail = companyEmail;
         this.UNP = UNP;
     }
+
+
 }

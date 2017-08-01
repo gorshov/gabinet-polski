@@ -3,6 +3,7 @@ package by.gabinet.polski.entity;
 import by.gabinet.polski.entity.enumiration.Courses;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -15,7 +16,7 @@ import java.util.Map;
 /**
  * Created by Александр Горшов on 11.07.2017  13:37.
  */
-
+@ToString(exclude = "userList")
 @Data
 @Table(name = "GROUP")
 @Entity

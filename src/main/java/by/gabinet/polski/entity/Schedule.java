@@ -21,11 +21,9 @@ public class Schedule implements Serializable {
     @Column(name = "SCHEDULE_ID", nullable = false, unique = true)
     private Long id;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "TIME_COURSE")
-    private Date timeStartCourse;
+    private Time timeStartCourse;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "DATE_COURSE")
     private Date dateOfCourse;
 
@@ -36,7 +34,7 @@ public class Schedule implements Serializable {
     }
 
     @Builder
-    public Schedule(Date timeStartCourse, Date dateOfCourse, Group group) {
+    public Schedule(Time timeStartCourse, Date dateOfCourse, Group group) {
         this.timeStartCourse = timeStartCourse;
         this.dateOfCourse = dateOfCourse;
         this.group = group;

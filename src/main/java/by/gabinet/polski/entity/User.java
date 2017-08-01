@@ -1,12 +1,12 @@
 package by.gabinet.polski.entity;
 
-import by.gabinet.polski.entity.enumiration.Role;
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Александр Горшов on 10.07.2017  21:33.
@@ -46,16 +46,17 @@ public class User implements Serializable {
     @JoinColumn(name = "GROUP_ID")
     private Group group;
 
-    @Column(name = "ROLE", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @ManyToMany
+    @JoinTable(name = "USER_ROLES", joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
 
     }
 
     @Builder
-    public User(String firstName, String lastName, Integer age, String phone, String email, String password, String confirmPassword, Group group, Role role) {
+    public User(String firstName, String lastName, Integer age, String phone, String email, String password, String confirmPassword, Group group, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -64,7 +65,7 @@ public class User implements Serializable {
         this.password = password;
         this.confirmPassword = confirmPassword;
         this.group = group;
-        this.role = role;
+        this.roles = roles;
     }
 
     @Override
@@ -82,9 +83,7 @@ public class User implements Serializable {
         if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (confirmPassword != null ? !confirmPassword.equals(user.confirmPassword) : user.confirmPassword != null)
-            return false;
-        return role == user.role;
+        return confirmPassword != null ? confirmPassword.equals(user.confirmPassword) : user.confirmPassword == null;
     }
 
     @Override
@@ -98,7 +97,6 @@ public class User implements Serializable {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (confirmPassword != null ? confirmPassword.hashCode() : 0);
-        result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
     }
 }
