@@ -1,9 +1,7 @@
 package by.gabinet.polski.entity;
 
 import by.gabinet.polski.entity.enumiration.Courses;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -18,7 +16,7 @@ import java.util.Map;
  */
 @ToString(exclude = "userList")
 @Data
-@Table(name = "GROUP")
+@Table(name = "`GROUP`")
 @Entity
 public class Group implements Serializable {
 
@@ -40,7 +38,7 @@ public class Group implements Serializable {
     private Schedule schedule;
 
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+    @Cascade(CascadeType.ALL)
     private List<User> userList = new ArrayList<User>();
 
     @ManyToOne
