@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 31.07.2017
-  Time: 11:09
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,5 +6,9 @@
 </head>
 <body>
 <h1>GABINET POLSKI</h1>
+
+<c:forEach items="${user}" var="user">
+    <c:out value="${user.login}"/>|<c:out value="${user.firstName}"/>|<c:out value="${user.lastName}"/><br/>
+</c:forEach>
 </body>
 </html>
