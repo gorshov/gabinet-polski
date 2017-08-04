@@ -21,7 +21,7 @@ public class Role {
     private Long id;
 
     @Column(name = "ROLE")
-    private String role;
+    private String roleName;
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
@@ -30,8 +30,8 @@ public class Role {
     }
 
     @Builder
-    public Role(String role, Set<User> users) {
-        this.role = role;
+    public Role(String roleName, Set<User> users) {
+        this.roleName = roleName;
         this.users = users;
     }
 
@@ -44,14 +44,14 @@ public class Role {
         Role role1 = (Role) o;
 
         if (id != null ? !id.equals(role1.id) : role1.id != null) return false;
-        return role != null ? role.equals(role1.role) : role1.role == null;
+        return roleName != null ? roleName.equals(role1.roleName) : role1.roleName == null;
     }
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + (id != null ? id.hashCode() : 0);
-        result = 31 * result + (role != null ? role.hashCode() : 0);
+        result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
         return result;
     }
 

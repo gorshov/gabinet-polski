@@ -59,9 +59,10 @@ public class User implements Serializable {
     }
 
     @Builder
-    public User(String firstName, String lastName, Integer age, String phone, String email, String password, String confirmPassword, Group group, Set<Role> roles) {
+    public User(String firstName, String lastName, String login, Integer age, String phone, String email, String password, String confirmPassword, Group group, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.login = login;
         this.age = age;
         this.phone = phone;
         this.email = email;
@@ -82,6 +83,7 @@ public class User implements Serializable {
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
         if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
         if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
+        if (login != null ? !login.equals(user.login) : user.login != null) return false;
         if (age != null ? !age.equals(user.age) : user.age != null) return false;
         if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
@@ -95,6 +97,7 @@ public class User implements Serializable {
         result = 31 * result + (id != null ? id.hashCode() : 0);
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (age != null ? age.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);

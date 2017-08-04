@@ -11,6 +11,13 @@
         <hibernate.version>4.3.11.Final</hibernate.version>
         <commons.dbcp>1.4</commons.dbcp>
         <spring.version>4.3.7.RELEASE</spring.version>
+        <springsecurity.version>4.2.2.RELEASE</springsecurity.version>
+        <cglib.version>3.2.5</cglib.version>
+        <aspectjweaver.version>1.8.10</aspectjweaver.version>
+        <aspectjrt.version>1.8.10</aspectjrt.version>
+        <log4j.version>1.2.17</log4j.version>
+        <hikariCP.version>2.6.1</hikariCP.version>
+        <postgresql.version>9.3-1103-jdbc41</postgresql.version>
     </properties>
 
     <dependencies>
@@ -38,12 +45,12 @@
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>2.6.1</version>
+            <version>${hikariCP.version}</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.3-1103-jdbc41</version>
+            <version>${postgresql.version}</version>
         </dependency>
         <!--Spring-->
         <dependency>
@@ -83,6 +90,23 @@
         </dependency>
         <!--End Spring-->
 
+        <!--Spring Security-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
+        <!--End Spring security-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -91,7 +115,7 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${log4j.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.sun.jdmk</groupId>
@@ -116,17 +140,17 @@
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
-            <version>3.2.5</version>
+            <version>${cglib.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.8.10</version>
+            <version>${aspectjweaver.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>1.8.10</version>
+            <version>${aspectjrt.version}</version>
         </dependency>
     </dependencies>
 

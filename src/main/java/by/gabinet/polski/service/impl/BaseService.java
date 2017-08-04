@@ -23,6 +23,9 @@ public class BaseService<T> implements BaseServiceInterface<T> {
     @Qualifier("baseDao")
     protected BaseDaoInterface<T> daoInterface;
 
+    public BaseService() {
+    }
+
     @Autowired
     public BaseService(BaseDaoInterface<T> baseDaoInterface) {
         this.daoInterface = daoInterface;
