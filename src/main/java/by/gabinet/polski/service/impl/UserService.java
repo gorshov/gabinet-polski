@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
+
 /**
  * Created by Александр Горшов on 03.08.2017  20:04.
  */
@@ -26,5 +28,23 @@ public class UserService extends BaseService<User> implements UserServiceInterfa
     public User findByLogin(String login) {
         log.info("start service method findBylogin with param " + login);
         return userDaoInterface.findByLogin(login);
+    }
+
+    @Override
+    public User findUserByLastName(String lastName) {
+        log.info("start method findUserByName with last name " + lastName);
+        return userDaoInterface.findUserByLastName(lastName);
+    }
+
+    @Override
+    public User findUserByLoginAndPassword(String login, String password) {
+        log.info("start method findUserByLoginAndPassword with login " + login);
+        return userDaoInterface.findUserByLoginAndPassword(login, password);
+    }
+
+    @Override
+    public void deleteById(Serializable id) {
+        log.info("start method deleteById with id " + id);
+        userDaoInterface.deleteById(id);
     }
 }

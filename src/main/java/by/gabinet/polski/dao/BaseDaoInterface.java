@@ -17,5 +17,4 @@ public interface BaseDaoInterface<T> {
 
     List<T> getAll(Class clazz);
 
-    void deleteById(Class clazz, Serializable id);
 }

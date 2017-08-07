@@ -56,12 +56,4 @@ public class BaseDao<T> implements BaseDaoInterface<T> {
         List<T> result = criteria.list();
         return result;
     }
-
-    @Override
-    public void deleteById(Class clazz, Serializable id) {
-        log.info("start method deleteById with id = " + id);
-        String deleteByIdQuery = " delete from " + clazz.getClass() + " where " + clazz.getClass() + ".id=:id";
-        Query queryDeleteById = getSession().createQuery(deleteByIdQuery).setParameter("id", id);
-        queryDeleteById.executeUpdate();
-    }
 }
