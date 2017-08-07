@@ -16,6 +16,8 @@ public interface ScheduleDaoInterface<T> extends BaseDaoInterface<T> {
 
     List<Schedule> getScheduleByGroup(Group group);
 
+    List<Schedule> getScheduleOnMonth(Date date);
+
     void deleteById(Serializable id);
 
 }
