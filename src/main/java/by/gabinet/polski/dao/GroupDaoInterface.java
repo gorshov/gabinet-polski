@@ -20,5 +20,7 @@ public interface GroupDaoInterface<T> extends BaseDaoInterface<T> {
 
     List<Group> getGroupByTime(Time time);
 
+    List<Group> getGroupByTeacher(String lastName);
+
     void deleteById(Serializable id);
 }
