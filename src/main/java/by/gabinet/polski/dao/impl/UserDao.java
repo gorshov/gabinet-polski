@@ -27,4 +27,14 @@ public class UserDao extends BaseDao<User> implements UserDaoInterface<User> {
         Query query = getSession().createQuery(queryFindByLogin).setParameter("login", login);
         return (User) query.uniqueResult();
     }
+
+    @Override
+    public User findUserByName(String userName) {
+        return null;
+    }
+
+    @Override
+    public User findUserByLoginAndPassword(String login, String password) {
+        return null;
+    }
 }

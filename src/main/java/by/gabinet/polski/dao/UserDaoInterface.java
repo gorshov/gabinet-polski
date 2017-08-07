@@ -8,4 +8,8 @@ import by.gabinet.polski.entity.User;
 public interface UserDaoInterface<T> extends BaseDaoInterface<T> {
 
     User findByLogin(String login);
+
+    User findUserByName(String userName);
+
+    User findUserByLoginAndPassword(String login, String password);
 }
