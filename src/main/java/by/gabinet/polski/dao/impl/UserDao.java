@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
+
 /**
  * Created by Александр Горшов on 03.08.2017  19:41.
  */
@@ -29,12 +31,26 @@ public class UserDao extends BaseDao<User> implements UserDaoInterface<User> {
     }
 
     @Override
-    public User findUserByName(String userName) {
-        return null;
+    public User findUserByLastName(String lastName) {
+        log.info("start method findUserByName with last name " + lastName);
+        String queryFindUserByLastName = "from User as U where U.lastName=:lastName";
+        Query query = getSession().createQuery(queryFindUserByLastName).setParameter("lastName", lastName);
+        return (User) query.uniqueResult();
     }
 
     @Override
     public User findUserByLoginAndPassword(String login, String password) {
-        return null;
+        log.info("start method findUserByLoginAndPassword with login " + login);
+        String queryFindUserByLoginAndPassword = "from User as U where U.login=:login and U.password=:password";
+        Query query = getSession().createQuery(queryFindUserByLoginAndPassword).setParameter("login", login).setParameter("password", password);
+        return (User) query.uniqueResult();
+    }
+
+    @Override
+    public void deleteById(Serializable id) {
+        log.info("start method deleteById with id " + id);
+        String queryDeleteById = "delete from User as U where U.id=:id";
+        Query query = getSession().createQuery(queryDeleteById).setParameter("id", id);
+        query.executeUpdate();
     }
 }

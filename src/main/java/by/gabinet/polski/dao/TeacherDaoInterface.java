@@ -1,7 +1,9 @@
 package by.gabinet.polski.dao;
 
 import by.gabinet.polski.entity.Teacher;
+import by.gabinet.polski.entity.enumiration.Courses;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,8 +11,10 @@ import java.util.List;
  */
 public interface TeacherDaoInterface<T> extends BaseDaoInterface<T> {
 
-    List<T> findGroupByTeacher(Class clazz);
+    List<T> findTeacherByGroup(Courses coursesName);
 
     Teacher findTeacherByName(String name);
+
+    void deleteById(Serializable id);
 
 }

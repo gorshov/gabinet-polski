@@ -1,7 +1,9 @@
 package by.gabinet.polski.dao;
 
+import by.gabinet.polski.entity.Group;
 import by.gabinet.polski.entity.Schedule;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -11,5 +13,9 @@ import java.util.List;
 public interface ScheduleDaoInterface<T> extends BaseDaoInterface<T> {
 
     List<Schedule> getScheduleByDay(Date date);
+
+    List<Schedule> getScheduleByGroup(Group group);
+
+    void deleteById(Serializable id);
 
 }
