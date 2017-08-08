@@ -7,6 +7,8 @@ import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,14 +34,15 @@ public class Group implements Serializable {
     @Column(name = "STATUS")
     private Boolean status;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @Cascade(CascadeType.SAVE_UPDATE)
-    @JoinColumn(name = "SCHEDULE_ID")
-    private Schedule schedule;
-
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     @Cascade(CascadeType.ALL)
     private List<User> userList = new ArrayList<User>();
+
+    @Column(name = "TIME_COURSE")
+    private Time timeStartCourse;
+
+    @Column(name = "DATE_COURSE")
+    private Date dateOfCourse;
 
     @ManyToOne
     @JoinColumn(name = "TEACHER_ID")
@@ -53,11 +56,12 @@ public class Group implements Serializable {
     }
 
     @Builder
-    public Group(Courses courseName, Boolean status, Schedule schedule, List<User> userList, Teacher teacher, Double cost) {
+    public Group(Courses courseName, Boolean status, List<User> userList, Time timeStartCourse, Date dateOfCourse, Teacher teacher, Double cost) {
         this.courseName = courseName;
         this.status = status;
-        this.schedule = schedule;
         this.userList = userList;
+        this.timeStartCourse = timeStartCourse;
+        this.dateOfCourse = dateOfCourse;
         this.teacher = teacher;
         this.cost = cost;
     }
@@ -73,6 +77,9 @@ public class Group implements Serializable {
         if (id != null ? !id.equals(group.id) : group.id != null) return false;
         if (courseName != group.courseName) return false;
         if (status != null ? !status.equals(group.status) : group.status != null) return false;
+        if (timeStartCourse != null ? !timeStartCourse.equals(group.timeStartCourse) : group.timeStartCourse != null)
+            return false;
+        if (dateOfCourse != null ? !dateOfCourse.equals(group.dateOfCourse) : group.dateOfCourse != null) return false;
         return cost != null ? cost.equals(group.cost) : group.cost == null;
     }
 
@@ -82,6 +89,8 @@ public class Group implements Serializable {
         result = 31 * result + (id != null ? id.hashCode() : 0);
         result = 31 * result + (courseName != null ? courseName.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (timeStartCourse != null ? timeStartCourse.hashCode() : 0);
+        result = 31 * result + (dateOfCourse != null ? dateOfCourse.hashCode() : 0);
         result = 31 * result + (cost != null ? cost.hashCode() : 0);
         return result;
     }

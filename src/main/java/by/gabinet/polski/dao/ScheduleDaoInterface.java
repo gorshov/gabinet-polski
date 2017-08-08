@@ -1,7 +1,6 @@
 package by.gabinet.polski.dao;
 
 import by.gabinet.polski.entity.Group;
-import by.gabinet.polski.entity.Schedule;
 
 import java.io.Serializable;
 import java.sql.Date;

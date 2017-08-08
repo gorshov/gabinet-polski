@@ -44,15 +44,13 @@ public class GroupDao extends BaseDao<Group> implements GroupDaoInterface<Group>
 
     @Override
     public List<Group> getGroupByCurrentQuarter(int numberQuarter) {
-        log.info("start method getReportOnCurrentQuarter with parameters : " + numberQuarter);
-        String getByReportOnCurrentQuarter = "from Group as G, Schedule as S where QUARTER(S.dateOfCourse)=:numberQuarter";
-        Query query = getSession().createQuery(getByReportOnCurrentQuarter).setParameter("numberQuarter", numberQuarter);
-        List<Group> reportList = query.list();
         return null;
     }
 
     @Override
-    public List<Group> getBySetDate(Date start, Date end) {
+    public List<Group> getBySetDate(Date startDate, Date endDate) {
+        log.info("start method getBySetDate with interval " + startDate + " and " + endDate);
+        String queryGetBySetDate = "select * from Group as G, Schedule as S where S.date_course >:startDate and S.date_course <:endDate";
         return null;
     }
 
