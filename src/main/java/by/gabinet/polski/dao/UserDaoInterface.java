@@ -1,5 +1,6 @@
 package by.gabinet.polski.dao;
 
+import by.gabinet.polski.dao.exception.DaoException;
 import by.gabinet.polski.entity.User;
 
 import java.io.Serializable;
@@ -9,11 +10,11 @@ import java.io.Serializable;
  */
 public interface UserDaoInterface<T> extends BaseDaoInterface<T> {
 
-    User findByLogin(String login);
+    User findByLogin(String login) throws DaoException;
 
-    User findUserByLastName(String lastName);
+    User findUserByLastName(String lastName) throws DaoException;
 
-    User findUserByLoginAndPassword(String login, String password);
+    User findUserByLoginAndPassword(String login, String password) throws DaoException;
 
-    void deleteById(Serializable id);
+    void deleteById(Serializable id) throws DaoException;
 }

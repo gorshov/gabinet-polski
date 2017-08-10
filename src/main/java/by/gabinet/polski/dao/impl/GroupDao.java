@@ -1,6 +1,7 @@
 package by.gabinet.polski.dao.impl;
 
 import by.gabinet.polski.dao.GroupDaoInterface;
+import by.gabinet.polski.dao.exception.DaoException;
 import by.gabinet.polski.entity.Group;
 import by.gabinet.polski.entity.enumiration.Courses;
 import org.apache.log4j.Logger;
@@ -34,7 +35,7 @@ public class GroupDao extends BaseDao<Group> implements GroupDaoInterface<Group>
 
 
     @Override
-    public List<Group> getGroupByCoursesName(Courses coursesName) {
+    public List<Group> getGroupByCoursesName(Courses coursesName) throws DaoException {
         log.info("start method getGroupByCoursesName with courses name " + coursesName);
         Criteria criteria = getSession().createCriteria(Group.class);
         criteria.add(Restrictions.eq("courseName", coursesName.toString().toUpperCase()));
@@ -43,41 +44,41 @@ public class GroupDao extends BaseDao<Group> implements GroupDaoInterface<Group>
     }
 
     @Override
-    public List<Group> getGroupByCurrentQuarter(int numberQuarter) {
+    public List<Group> getGroupByCurrentQuarter(int numberQuarter) throws DaoException {
         return null;
     }
 
     @Override
-    public List<Group> getBySetDate(Date startDate, Date endDate) {
+    public List<Group> getBySetDate(Date startDate, Date endDate) throws DaoException {
         log.info("start method getBySetDate with interval " + startDate + " and " + endDate);
         String queryGetBySetDate = "select * from Group as G, Schedule as S where S.date_course >:startDate and S.date_course <:endDate";
         return null;
     }
 
     @Override
-    public List<Group> getGroupByMonth(Date date) {
+    public List<Group> getGroupByMonth(Date date)throws DaoException {
         return null;
     }
 
     @Override
-    public List<Group> getGroupByTime(Time time) {
+    public List<Group> getGroupByTime(Time time) throws DaoException {
         return null;
     }
 
     @Override
-    public List<Group> getGroupByTeacher(String lastName) {
+    public List<Group> getGroupByTeacher(String lastName) throws DaoException {
         log.info("start method getGroupByTeacher with lastName " + lastName);
 
         return null;
     }
 
     @Override
-    public List<Group> getReportOnLastQuarter(int numberQuarter, int year) {
+    public List<Group> getReportOnLastQuarter(int numberQuarter, int year) throws DaoException {
         return null;
     }
 
     @Override
-    public void deleteById(Serializable id) {
+    public void deleteById(Serializable id) throws DaoException {
         log.info("start method deleteById with id " + id);
         String queryDeleteById = "delete from Group as G where G.id=:id";
         Query query = getSession().createQuery(queryDeleteById).setParameter("id", id);

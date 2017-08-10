@@ -1,6 +1,7 @@
 package by.gabinet.polski.dao.impl;
 
 import by.gabinet.polski.dao.UserDaoInterface;
+import by.gabinet.polski.dao.exception.DaoException;
 import by.gabinet.polski.entity.User;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -23,7 +24,7 @@ public class UserDao extends BaseDao<User> implements UserDaoInterface<User> {
     }
 
     @Override
-    public User findByLogin(String login) {
+    public User findByLogin(String login) throws DaoException {
         log.info("start method findByLogin with login " + login);
         String queryFindByLogin = "from User as U where U.login=:login";
         Query query = getSession().createQuery(queryFindByLogin).setParameter("login", login);
@@ -31,7 +32,7 @@ public class UserDao extends BaseDao<User> implements UserDaoInterface<User> {
     }
 
     @Override
-    public User findUserByLastName(String lastName) {
+    public User findUserByLastName(String lastName) throws DaoException{
         log.info("start method findUserByName with last name " + lastName);
         String queryFindUserByLastName = "from User as U where U.lastName=:lastName";
         Query query = getSession().createQuery(queryFindUserByLastName).setParameter("lastName", lastName);
@@ -39,7 +40,7 @@ public class UserDao extends BaseDao<User> implements UserDaoInterface<User> {
     }
 
     @Override
-    public User findUserByLoginAndPassword(String login, String password) {
+    public User findUserByLoginAndPassword(String login, String password) throws DaoException{
         log.info("start method findUserByLoginAndPassword with login " + login);
         String queryFindUserByLoginAndPassword = "from User as U where U.login=:login and U.password=:password";
         Query query = getSession().createQuery(queryFindUserByLoginAndPassword).setParameter("login", login).setParameter("password", password);
@@ -47,7 +48,7 @@ public class UserDao extends BaseDao<User> implements UserDaoInterface<User> {
     }
 
     @Override
-    public void deleteById(Serializable id) {
+    public void deleteById(Serializable id) throws DaoException{
         log.info("start method deleteById with id " + id);
         String queryDeleteById = "delete from User as U where U.id=:id";
         Query query = getSession().createQuery(queryDeleteById).setParameter("id", id);

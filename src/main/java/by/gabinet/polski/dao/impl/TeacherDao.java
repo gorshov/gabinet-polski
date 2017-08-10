@@ -1,6 +1,7 @@
 package by.gabinet.polski.dao.impl;
 
 import by.gabinet.polski.dao.TeacherDaoInterface;
+import by.gabinet.polski.dao.exception.DaoException;
 import by.gabinet.polski.entity.Teacher;
 import by.gabinet.polski.entity.enumiration.Courses;
 import org.apache.log4j.Logger;
@@ -27,7 +28,7 @@ public class TeacherDao extends BaseDao<Teacher> implements TeacherDaoInterface<
     }
 
     @Override
-    public List<Teacher> findTeacherByGroup(Courses coursesName) {
+    public List<Teacher> findTeacherByGroup(Courses coursesName) throws DaoException {
         log.info("start method findGroupByTeacher with courseName " + coursesName);
         /*String queryFindTeacherByGroup = "from Teacher as T where T.courseName=:coursesName";
         Query query = getSession().createQuery(queryFindTeacherByGroup).setParameter("coursesName", coursesName);*/
@@ -37,14 +38,14 @@ public class TeacherDao extends BaseDao<Teacher> implements TeacherDaoInterface<
     }
 
     @Override
-    public Teacher findTeacherByName(String name) {
+    public Teacher findTeacherByName(String name) throws DaoException {
         Criteria criteria = getSession().createCriteria(Teacher.class);
         criteria.add(Restrictions.eq("lastName", name.toString().toUpperCase()));
         return (Teacher) criteria.uniqueResult();
     }
 
     @Override
-    public void deleteById(Serializable id) {
+    public void deleteById(Serializable id) throws DaoException {
         log.info("start method deleteById with id " + id);
         String queryDeleteById = "delete from Teacher as T where T.id=:id";
         Query query = getSession().createQuery(queryDeleteById).setParameter("id", id);

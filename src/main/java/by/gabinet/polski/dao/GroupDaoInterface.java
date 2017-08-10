@@ -1,5 +1,6 @@
 package by.gabinet.polski.dao;
 
+import by.gabinet.polski.dao.exception.DaoException;
 import by.gabinet.polski.entity.Group;
 import by.gabinet.polski.entity.enumiration.Courses;
 
@@ -13,19 +14,19 @@ import java.util.List;
  */
 public interface GroupDaoInterface<T> extends BaseDaoInterface<T> {
 
-    List<Group> getGroupByCoursesName(Courses coursesName);
+    List<Group> getGroupByCoursesName(Courses coursesName) throws DaoException;
 
-    List<Group> getGroupByCurrentQuarter(int numberQuarter);
+    List<Group> getGroupByCurrentQuarter(int numberQuarter) throws DaoException;
 
-    List<Group> getBySetDate(Date start, Date end);
+    List<Group> getBySetDate(Date start, Date end) throws DaoException;
 
-    List<Group> getReportOnLastQuarter(int numberQuarter, int year);
+    List<Group> getReportOnLastQuarter(int numberQuarter, int year) throws DaoException;
 
-    List<Group> getGroupByMonth(Date date);
+    List<Group> getGroupByMonth(Date date) throws DaoException;
 
-    List<Group> getGroupByTime(Time time);
+    List<Group> getGroupByTime(Time time) throws DaoException;
 
-    List<Group> getGroupByTeacher(String lastName);
+    List<Group> getGroupByTeacher(String lastName) throws DaoException;
 
-    void deleteById(Serializable id);
+    void deleteById(Serializable id) throws DaoException;
 }

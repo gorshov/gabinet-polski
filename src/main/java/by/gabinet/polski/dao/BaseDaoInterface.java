@@ -1,6 +1,6 @@
 package by.gabinet.polski.dao;
 
-import org.springframework.stereotype.Repository;
+import by.gabinet.polski.dao.exception.DaoException;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,10 +11,10 @@ import java.util.List;
 
 public interface BaseDaoInterface<T> {
 
-    void saveOrUpdate(T entity);
+    void saveOrUpdate(T entity) throws DaoException;
 
-    T getById(Class clazz, Serializable id);
+    T getById(Class clazz, Serializable id) throws DaoException;
 
-    List<T> getAll(Class clazz);
+    List<T> getAll(Class clazz) throws DaoException;
 
 }

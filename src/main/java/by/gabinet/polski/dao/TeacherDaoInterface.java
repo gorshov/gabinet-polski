@@ -1,5 +1,6 @@
 package by.gabinet.polski.dao;
 
+import by.gabinet.polski.dao.exception.DaoException;
 import by.gabinet.polski.entity.Teacher;
 import by.gabinet.polski.entity.enumiration.Courses;
 
@@ -11,10 +12,10 @@ import java.util.List;
  */
 public interface TeacherDaoInterface<T> extends BaseDaoInterface<T> {
 
-    List<T> findTeacherByGroup(Courses coursesName);
+    List<T> findTeacherByGroup(Courses coursesName) throws DaoException;
 
-    Teacher findTeacherByName(String name);
+    Teacher findTeacherByName(String name) throws DaoException;
 
-    void deleteById(Serializable id);
+    void deleteById(Serializable id) throws DaoException;
 
 }
