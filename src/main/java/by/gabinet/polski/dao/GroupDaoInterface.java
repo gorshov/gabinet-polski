@@ -18,7 +18,7 @@ public interface GroupDaoInterface<T> extends BaseDaoInterface<T> {
 
     List<Group> getGroupByCurrentQuarter(int numberQuarter) throws DaoException;
 
-    List<Group> getBySetDate(Date start, Date end) throws DaoException;
+    List<Group> getBySetDate(Date dateOfCource) throws DaoException;
 
     List<Group> getReportOnLastQuarter(int numberQuarter, int year) throws DaoException;
 

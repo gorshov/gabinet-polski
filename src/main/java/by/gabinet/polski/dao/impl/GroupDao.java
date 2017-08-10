@@ -45,24 +45,33 @@ public class GroupDao extends BaseDao<Group> implements GroupDaoInterface<Group>
 
     @Override
     public List<Group> getGroupByCurrentQuarter(int numberQuarter) throws DaoException {
-        return null;
+        log.info("start method getGroupByCurrentQuarter with number quarter " + numberQuarter);
+        String queryGroupByCurrentQuarter = "from Group G where QUARTER(G.dateOfCource)=:numberQuarter";
+        Query query = getSession().createQuery(queryGroupByCurrentQuarter).setParameter("numberQuarter", numberQuarter);
+        return query.list();
     }
 
     @Override
-    public List<Group> getBySetDate(Date startDate, Date endDate) throws DaoException {
-        log.info("start method getBySetDate with interval " + startDate + " and " + endDate);
-        String queryGetBySetDate = "select * from Group as G, Schedule as S where S.date_course >:startDate and S.date_course <:endDate";
-        return null;
+    public List<Group> getBySetDate(Date dateOfCource) throws DaoException {
+        log.info("start method getBySetDate with start date " + dateOfCource);
+        Criteria criteria = getSession().createCriteria(Group.class);
+        criteria.add(Restrictions.ge("dateOfCource", dateOfCource));
+        criteria.addOrder(Order.asc("dateOfCource"));
+        return criteria.list();
     }
 
     @Override
-    public List<Group> getGroupByMonth(Date date)throws DaoException {
+    public List<Group> getGroupByMonth(Date date) throws DaoException {
         return null;
     }
 
     @Override
     public List<Group> getGroupByTime(Time time) throws DaoException {
-        return null;
+        log.info("start method getGroupByTime with time " + time);
+        Criteria criteria = getSession().createCriteria(Group.class);
+        criteria.add(Restrictions.eq("timeStartCourse", time));
+        criteria.addOrder(Order.asc("timeStartCourse"));
+        return criteria.list();
     }
 
     @Override
@@ -74,7 +83,12 @@ public class GroupDao extends BaseDao<Group> implements GroupDaoInterface<Group>
 
     @Override
     public List<Group> getReportOnLastQuarter(int numberQuarter, int year) throws DaoException {
-        return null;
+        log.info("start method getReportOnLastQuarter with number Quarter " + numberQuarter + " and year " + year);
+        String queryGetByReportOnLastQuarter = "SELECT * FROM group WHERE QUARTER(DATE_COURSE)=:numberQuarter GROUP BY DATE_COURSE =:year";
+        SQLQuery query = getSession().createSQLQuery(queryGetByReportOnLastQuarter);
+        query.addEntity(Group.class);
+        query.setParameter("numberQuarter", numberQuarter).setParameter("year", year);
+        return query.list();
     }
 
     @Override
