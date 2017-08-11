@@ -22,11 +22,10 @@ public interface GroupDaoInterface<T> extends BaseDaoInterface<T> {
 
     List<Group> getReportOnLastQuarter(int numberQuarter, int year) throws DaoException;
 
-    List<Group> getGroupByMonth(Date date) throws DaoException;
 
     List<Group> getGroupByTime(Time time) throws DaoException;
 
-    List<Group> getGroupByTeacher(String lastName) throws DaoException;
+    List<Group> getGroupByTeacher(Long id) throws DaoException;
 
     void deleteById(Serializable id) throws DaoException;
 }

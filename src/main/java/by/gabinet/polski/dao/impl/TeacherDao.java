@@ -28,7 +28,7 @@ public class TeacherDao extends BaseDao<Teacher> implements TeacherDaoInterface<
     }
 
     @Override
-    public List<Teacher> findTeacherByGroup(Courses coursesName) throws DaoException {
+    public List<Teacher> findTeacherByCoursesName(Courses coursesName) throws DaoException {
         log.info("start method findGroupByTeacher with courseName " + coursesName);
         /*String queryFindTeacherByGroup = "from Teacher as T where T.courseName=:coursesName";
         Query query = getSession().createQuery(queryFindTeacherByGroup).setParameter("coursesName", coursesName);*/

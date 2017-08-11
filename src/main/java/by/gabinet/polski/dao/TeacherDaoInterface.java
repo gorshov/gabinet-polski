@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface TeacherDaoInterface<T> extends BaseDaoInterface<T> {
 
-    List<T> findTeacherByGroup(Courses coursesName) throws DaoException;
+    List<T> findTeacherByCoursesName(Courses coursesName) throws DaoException;
 
     Teacher findTeacherByName(String name) throws DaoException;
 

@@ -61,11 +61,6 @@ public class GroupDao extends BaseDao<Group> implements GroupDaoInterface<Group>
     }
 
     @Override
-    public List<Group> getGroupByMonth(Date date) throws DaoException {
-        return null;
-    }
-
-    @Override
     public List<Group> getGroupByTime(Time time) throws DaoException {
         log.info("start method getGroupByTime with time " + time);
         Criteria criteria = getSession().createCriteria(Group.class);
@@ -75,9 +70,10 @@ public class GroupDao extends BaseDao<Group> implements GroupDaoInterface<Group>
     }
 
     @Override
-    public List<Group> getGroupByTeacher(String lastName) throws DaoException {
-        log.info("start method getGroupByTeacher with lastName " + lastName);
-
+    public List<Group> getGroupByTeacher(Long id) throws DaoException {
+        log.info("start method getGroupByTeacher with id " + id);
+        String queryGetGroupByTeacher = "from Group G where Teacher.id=:groupId";
+        Query query = getSession().createQuery(queryGetGroupByTeacher).setParameter("groupId", id);
         return null;
     }
 
