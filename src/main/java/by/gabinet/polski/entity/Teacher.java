@@ -35,12 +35,6 @@ public class Teacher {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "PASSWORD")
-    private String password;
-
-    @Transient
-    private String confirmPassword;
-
     @Column(name = "LANGUAGE")
     private String language;
 
@@ -54,12 +48,10 @@ public class Teacher {
     }
 
     @Builder
-    public Teacher(String firstName, String lastName, String email, String password, String confirmPassword, String language, List<Group> groupList) {
+    public Teacher(String firstName, String lastName, String email, String language, List<Group> groupList) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
         this.language = language;
         this.groupList = groupList;
     }
@@ -76,9 +68,6 @@ public class Teacher {
         if (firstName != null ? !firstName.equals(teacher.firstName) : teacher.firstName != null) return false;
         if (lastName != null ? !lastName.equals(teacher.lastName) : teacher.lastName != null) return false;
         if (email != null ? !email.equals(teacher.email) : teacher.email != null) return false;
-        if (password != null ? !password.equals(teacher.password) : teacher.password != null) return false;
-        if (confirmPassword != null ? !confirmPassword.equals(teacher.confirmPassword) : teacher.confirmPassword != null)
-            return false;
         return language != null ? language.equals(teacher.language) : teacher.language == null;
     }
 
@@ -89,8 +78,6 @@ public class Teacher {
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (confirmPassword != null ? confirmPassword.hashCode() : 0);
         result = 31 * result + (language != null ? language.hashCode() : 0);
         return result;
     }

@@ -14,14 +14,13 @@ import java.util.List;
  */
 public interface GroupDaoInterface<T> extends BaseDaoInterface<T> {
 
-    List<Group> getGroupByCoursesName(Courses coursesName) throws DaoException;
+    List<Group> getGroupByCourseId(Serializable id);
 
     List<Group> getGroupByCurrentQuarter(int numberQuarter) throws DaoException;
 
     List<Group> getBySetDate(Date dateOfCource) throws DaoException;
 
-    List<Group> getReportOnLastQuarter(int numberQuarter, int year) throws DaoException;
-
+    List<Group> getGroupOnLastQuarter(int numberQuarter, int year) throws DaoException;
 
     List<Group> getGroupByTime(Time time) throws DaoException;
 

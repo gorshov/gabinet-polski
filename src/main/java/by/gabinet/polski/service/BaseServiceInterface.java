@@ -1,5 +1,7 @@
 package by.gabinet.polski.service;
 
+import by.gabinet.polski.dao.exception.DaoException;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,7 +14,6 @@ public interface BaseServiceInterface<T> {
 
     T getById(Class clazz, Serializable id);
 
-    List<T> getAll(Class clazz);
+    List<T> getAll(Class clazz) throws DaoException;
 
-    void deleteById(Class clazz, Serializable id);
 }

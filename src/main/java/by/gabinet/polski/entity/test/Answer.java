@@ -28,8 +28,11 @@ public class Answer {
     @Column(name = "STATUS_ANSWER", nullable = false)
     private Boolean statusAnswer;
 
+    @Column(name = "STUDENT_ANSWER_STATUS", nullable = false)
+    private Boolean studentStatusAnswer;
+
     public Answer() {
-        
+
     }
 
     @Builder

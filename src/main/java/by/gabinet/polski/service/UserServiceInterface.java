@@ -15,5 +15,5 @@ public interface UserServiceInterface<T> extends BaseServiceInterface<T> {
 
     User findUserByLoginAndPassword(String login, String password);
 
-    void deleteById(Serializable id);
+    void deleteById(Long id);
 }

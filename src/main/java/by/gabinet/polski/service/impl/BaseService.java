@@ -1,6 +1,7 @@
 package by.gabinet.polski.service.impl;
 
 import by.gabinet.polski.dao.BaseDaoInterface;
+import by.gabinet.polski.dao.exception.DaoException;
 import by.gabinet.polski.service.BaseServiceInterface;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,21 +34,26 @@ public class BaseService<T> implements BaseServiceInterface<T> {
 
     public void saveOrUpdate(T entity) {
         log.info("start saveOrUpdate method " + entity);
-        daoInterface.saveOrUpdate(entity);
+        try {
+            daoInterface.saveOrUpdate(entity);
+        } catch (DaoException e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
     public T getById(Class clazz, Serializable id) {
         log.info("start getById method " + clazz + " with id " + id);
-        return (T) daoInterface.getById(clazz, id);
+        try {
+            return (T) daoInterface.getById(clazz, id);
+        } catch (DaoException e) {
+            log.error(e.getMessage(), e);
+        }
+        return null;
     }
 
-    public List<T> getAll(Class clazz) {
+    public List<T> getAll(Class clazz) throws DaoException {
         log.info("start getAll method " + clazz);
-        List<T> list = daoInterface.getAll(clazz);
+        List<T> list =  daoInterface.getAll(clazz);
         return list;
-    }
-
-    public void deleteById(Class clazz, Serializable id) {
-        log.info("start getById method " + clazz + " with id " + id);
     }
 }

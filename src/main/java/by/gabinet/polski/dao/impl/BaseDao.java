@@ -4,6 +4,7 @@ import by.gabinet.polski.dao.BaseDaoInterface;
 import by.gabinet.polski.dao.exception.DaoException;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,12 @@ public class BaseDao<T> implements BaseDaoInterface<T> {
     @Override
     public List<T> getAll(Class clazz) throws DaoException {
         log.info("start method getAll " + clazz);
-        Criteria criteria = getSession().createCriteria(clazz);
-        List<T> result = criteria.list();
+        /*Criteria criteria = getSession().createCriteria(clazz);
+        List result = criteria.list();*/
+        StringBuilder queryGetAll = new StringBuilder("from ");
+        queryGetAll.append(clazz.getName());
+        Query query = getSession().createQuery(queryGetAll.toString());
+        List result = query.list();
         return result;
     }
 }

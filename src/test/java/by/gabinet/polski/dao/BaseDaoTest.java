@@ -1,5 +1,6 @@
 package by.gabinet.polski.dao;
 
+import by.gabinet.polski.dao.exception.DaoException;
 import by.gabinet.polski.dao.impl.GroupDao;
 import by.gabinet.polski.entity.Group;
 import org.junit.Assert;
@@ -42,12 +43,12 @@ public class BaseDaoTest {
     }
 
     @Test
-    public void getBySetDateTest() {
+    public void getBySetDateTest() throws DaoException {
         String startDate = "2017-06-30";
         Date dateStart = Date.valueOf(startDate);
         String endDate = "2017-08-30";
         Date dateEnd = Date.valueOf(endDate);
-        List<Group> groupList = groupDaoInterface.getBySetDate(dateStart, dateEnd);
+        List<Group> groupList = groupDaoInterface.getBySetDate(dateStart);
         int size = groupList.size();
     }
 

@@ -35,12 +35,11 @@ public class GroupDao extends BaseDao<Group> implements GroupDaoInterface<Group>
 
 
     @Override
-    public List<Group> getGroupByCoursesName(Courses coursesName) throws DaoException {
-        log.info("start method getGroupByCoursesName with courses name " + coursesName);
-        Criteria criteria = getSession().createCriteria(Group.class);
-        criteria.add(Restrictions.eq("courseName", coursesName.toString().toUpperCase()));
-        List<Group> groupList = criteria.list();
-        return groupList;
+    public List<Group> getGroupByCourseId(Serializable id) {
+        log.info("start method getGroupByCourseId with id " + id);
+        String queryGetGroupByCourseId = "from Group G where Course.id=:id";
+        Query query = getSession().createQuery(queryGetGroupByCourseId).setParameter("id", id);
+        return query.list();
     }
 
     @Override
@@ -78,10 +77,10 @@ public class GroupDao extends BaseDao<Group> implements GroupDaoInterface<Group>
     }
 
     @Override
-    public List<Group> getReportOnLastQuarter(int numberQuarter, int year) throws DaoException {
+    public List<Group> getGroupOnLastQuarter(int numberQuarter, int year) throws DaoException {
         log.info("start method getReportOnLastQuarter with number Quarter " + numberQuarter + " and year " + year);
-        String queryGetByReportOnLastQuarter = "SELECT * FROM group WHERE QUARTER(DATE_COURSE)=:numberQuarter GROUP BY DATE_COURSE =:year";
-        SQLQuery query = getSession().createSQLQuery(queryGetByReportOnLastQuarter);
+        String queryGetByGroupOnLastQuarter = "SELECT * FROM group WHERE QUARTER(DATE_COURSE)=:numberQuarter GROUP BY DATE_COURSE =:year";
+        SQLQuery query = getSession().createSQLQuery(queryGetByGroupOnLastQuarter);
         query.addEntity(Group.class);
         query.setParameter("numberQuarter", numberQuarter).setParameter("year", year);
         return query.list();
