@@ -2,6 +2,7 @@ package by.gabinet.polski.service.impl;
 
 import by.gabinet.polski.dao.CourseDaoInterface;
 import by.gabinet.polski.entity.Course;
+import by.gabinet.polski.entity.enumiration.Courses;
 import by.gabinet.polski.service.CourseServiceInterface;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,13 @@ public class CourseService extends BaseService<Course> implements CourseServiceI
     public void deleteById(Long id) {
         log.info("start service method deleteById with id " + id);
         courseDaoInterface.deleteById(id);
+    }
+
+    @Override
+    public Course getCourseByName(String courseName) {
+        log.info("start service method getCourseByName with name " + courseName);
+        Courses courses = Courses.valueOf(courseName);
+        Course course = courseDaoInterface.getCourseByName(courses);
+        return course;
     }
 }

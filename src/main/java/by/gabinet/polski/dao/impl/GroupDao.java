@@ -37,7 +37,7 @@ public class GroupDao extends BaseDao<Group> implements GroupDaoInterface<Group>
     @Override
     public List<Group> getGroupByCourseId(Serializable id) {
         log.info("start method getGroupByCourseId with id " + id);
-        String queryGetGroupByCourseId = "from Group G where Course.id=:id";
+        String queryGetGroupByCourseId = "from Group G where G.course.id=:id";
         Query query = getSession().createQuery(queryGetGroupByCourseId).setParameter("id", id);
         return query.list();
     }

@@ -33,7 +33,4 @@ public class GroupController {
         return "index";
     }
 
-    private List<Courses> getCourses() {
-        return new ArrayList<>(EnumSet.allOf(Courses.class));
-    }
 }

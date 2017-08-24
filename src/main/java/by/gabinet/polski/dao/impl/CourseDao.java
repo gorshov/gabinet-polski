@@ -2,6 +2,7 @@ package by.gabinet.polski.dao.impl;
 
 import by.gabinet.polski.dao.CourseDaoInterface;
 import by.gabinet.polski.entity.Course;
+import by.gabinet.polski.entity.enumiration.Courses;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -28,5 +29,13 @@ public class CourseDao extends BaseDao<Course> implements CourseDaoInterface<Cou
         String queryDeleteById = "delete from Course C where C.id=:id";
         Query query = getSession().createQuery(queryDeleteById).setParameter("id", id);
         query.executeUpdate();
+    }
+
+    @Override
+    public Course getCourseByName(Courses courseName) {
+        log.info("start method getCourseByName with course name " + courseName);
+        String queryGetCourseByName = "from Course C where C.courseName=:courseName";
+        Query query = getSession().createQuery(queryGetCourseByName).setParameter("courseName", courseName);
+        return (Course) query.uniqueResult();
     }
 }

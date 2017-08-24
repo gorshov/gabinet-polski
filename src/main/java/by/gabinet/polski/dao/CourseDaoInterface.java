@@ -1,5 +1,8 @@
 package by.gabinet.polski.dao;
 
+import by.gabinet.polski.entity.Course;
+import by.gabinet.polski.entity.enumiration.Courses;
+
 import java.io.Serializable;
 
 /**
@@ -9,4 +12,5 @@ public interface CourseDaoInterface<T> extends BaseDaoInterface<T> {
 
     void deleteById(Serializable id);
 
+    Course getCourseByName(Courses courseName);
 }

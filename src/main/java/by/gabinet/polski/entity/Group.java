@@ -1,6 +1,7 @@
 package by.gabinet.polski.entity;
 
 import by.gabinet.polski.entity.enumiration.Courses;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -34,6 +35,7 @@ public class Group implements Serializable {
 
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     @Cascade(CascadeType.ALL)
+    @JsonIgnore
     private List<User> userList = new ArrayList<User>();
 
     @Column(name = "TIME_COURSE")
@@ -44,6 +46,7 @@ public class Group implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "TEACHER_ID")
+    @JsonIgnore
     private Teacher teacher;
 
     @ManyToOne(fetch = FetchType.EAGER)

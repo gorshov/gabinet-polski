@@ -43,9 +43,6 @@ public class RootController {
         List<Course> courseList = courseServiceInterface.getAll(Course.class);
         List<Group> groupList = groupServiceInterface.getAll(Group.class);
         List<Courses> allCourses = getCourses();
-        model.addAttribute("courseList", courseList);
-        model.addAttribute("groupList", groupList);
-        model.addAttribute("allCourses", allCourses);
         model.addAttribute("mapOfPolish", Courses.MAP_POLES);
         model.addAttribute("fromZeroToA2", Courses.FROM_ZERO_TO_A2);
         model.addAttribute("fromA1A2ToB2", Courses.FROM_A1_A2_TO_B2);

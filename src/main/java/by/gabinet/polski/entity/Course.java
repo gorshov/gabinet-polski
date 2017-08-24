@@ -1,6 +1,7 @@
 package by.gabinet.polski.entity;
 
 import by.gabinet.polski.entity.enumiration.Courses;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -28,7 +29,7 @@ public class Course {
     @Column(name = "COURSE_ID", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "COURSE_NAME", nullable = false)
+    @Column(name = "COURSE_NAME", nullable = false, unique = true)
     @Enumerated(EnumType.STRING)
     private Courses courseName;
 
@@ -45,6 +46,7 @@ public class Course {
     private Group group;*/
   @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
   @Cascade(CascadeType.SAVE_UPDATE)
+  @JsonIgnore
   private List<Group> groupList = new ArrayList<>();
 
     public Course() {
