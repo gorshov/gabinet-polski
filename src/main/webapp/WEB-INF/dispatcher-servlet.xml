@@ -18,7 +18,11 @@
 
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/pages/"
-          p:suffix=".jsp"/>
+          p:suffix=".html"/>
+    <!--<bean class="org.springframework.web.servlet.view.XmlViewResolver">
+        <property name="order" value="1" />
+        <property name="location" value="/WEB-INF/pages/form.html" />
+    </bean>-->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <bean id="localeResolver"
